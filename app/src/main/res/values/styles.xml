@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="MaterialDrawerTheme.Light.DarkToolbar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/material_drawer_dark_primary_text</item>
+        <item name="material_drawer_selected">#EDEDED</item>
+        <item name="material_drawer_selected_text">@color/accent</item>
+        <item name="android:colorBackground">@color/colorPrimaryDark</item>
+        <item name="colorButtonNormal">@color/primary</item>
+        <item name="android:windowBackground">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="Button" parent="Base.Widget.AppCompat.Button.Borderless">
+        <item name="android:foreground">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+</resources>
