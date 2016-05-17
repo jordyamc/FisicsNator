@@ -57,3 +57,4 @@ dependencies {
     compile 'com.github.clans:fab:1.6.3'
     compile 'com.shamanland:xdroid-toaster:0.0.10'
 }
+apply plugin: 'org.fabiomsr.drawableoptimizer'

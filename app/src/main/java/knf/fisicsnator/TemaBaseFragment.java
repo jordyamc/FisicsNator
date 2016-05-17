@@ -16,12 +16,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import knf.fisicsnator.Modules.BaseAdaptetr;
 import knf.fisicsnator.Modules.BaseModule;
-import knf.fisicsnator.Modules.Fisica1.ModuleVelocidad;
+import knf.fisicsnator.Modules.Fisica1.ModuleFactoryVelocidad;
 import knf.fisicsnator.Utils.MainUtil;
 
-/**
- * Created by Jordy on 14/05/2016.
- */
+
 public class TemaBaseFragment extends Fragment {
     View view;
     @Bind(R.id.recyclerview)
@@ -46,16 +44,15 @@ public class TemaBaseFragment extends Fragment {
         Bundle bundle=getArguments();
         switch (bundle.getInt("tema")){
             case MainUtil.FISICA1_T1:
-                return new BaseAdaptetr(getActivity(),getFis1Modules());
+                return new BaseAdaptetr(getActivity(),getFis1_T1Modules());
             default:
                 return new BaseAdaptetr(getActivity(),new ArrayList<BaseModule>());
         }
     }
 
-    private List<BaseModule> getFis1Modules(){
+    private List<BaseModule> getFis1_T1Modules(){
         List<BaseModule> modules=new ArrayList<>();
-        modules.add(new ModuleVelocidad());
-        modules.add(new ModuleVelocidad());
+        modules.add(new ModuleFactoryVelocidad());
         return modules;
     }
 }

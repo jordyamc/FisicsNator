@@ -25,7 +25,7 @@ public class BaseModule {
     }
 
     public void setCustomViews(){
-        setUpViews();
+        setViewNames();
     }
 
     public void setUpViews() {
@@ -38,5 +38,9 @@ public class BaseModule {
 
     public void checkElements(boolean showWarning){
 
+    }
+
+    public void setViewNames(){
+        setUpViews();
     }
 }
