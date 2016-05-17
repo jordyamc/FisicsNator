@@ -144,4 +144,13 @@ public class Main extends AppCompatActivity {
             openFragment(MainUtil.getCurrent());
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen()){
+            finish();
+        }else {
+            drawer.openDrawer();
+        }
+    }
 }

@@ -15,7 +15,7 @@ public class Conversion {
         }
 
         public static float KMH_TO_KMS(Number velocidad) {
-            return MS_TO_KMS(KMH_TO_MS(velocidad));
+            return (float) velocidad * 3600f;
         }
 
         public static float KMS_TO_MS(Number velocidad) {
@@ -23,7 +23,7 @@ public class Conversion {
         }
 
         public static float KMS_TO_KMH(Number velocidad) {
-            return MS_TO_KMH(KMS_TO_MS(velocidad));
+            return (float) velocidad / 3600f;
         }
     }
 }
