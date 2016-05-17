@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="todos_definidos">Todos los campos ya estan definidos</string>
+    <string name="error_comprobacion">Error en comprobación!</string>
+    <string name="falta_dato">Falta dato</string>
+    <string name="ok_comprobacion">La comprobación es correcta!</string>
+</resources>

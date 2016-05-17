@@ -2,9 +2,10 @@
     <string name="app_name">Fisicsnator</string>
 
     <string name="recientes">Recientes</string>
+    <string name="no_rec">NO HAY OPERACIONES RECIENTES :)</string>
 
     <string name="fisica_1">Fisica I</string>
-    <string name="fisica_1_t1">Tema 1</string>
+    <string name="fisica_1_t1">Velocidad</string>
     <string name="fisica_1_t2">Tema 2</string>
 
     <string name="fisica_2">Fisica II</string>

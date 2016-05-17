@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="distancia">Distancia: m</string>
+    <string name="tiempo">Tiempo: s</string>
+    <string name="velocidad_ms">Velocidad: m/s</string>
+    <string name="velocidad_kmh">Velocidad: km/h</string>
+    <string name="velocidad_kms">Velocidad: km/s</string>
+    <string-array name="velocidad_array">
+        <item>@string/velocidad_ms</item>
+        <item>@string/velocidad_kmh</item>
+        <item>@string/velocidad_kms</item>
+    </string-array>
+</resources>

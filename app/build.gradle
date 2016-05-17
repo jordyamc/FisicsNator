@@ -6,16 +6,25 @@ android {
 
     defaultConfig {
         applicationId "knf.fisicsnator"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    dexOptions {
+        javaMaxHeapSize "8g"
+    }
+    productFlavors {
+    }
+    defaultConfig {
+        multiDexEnabled true
     }
 }
 allprojects {
@@ -40,13 +49,11 @@ dependencies {
         transitive = true
     }
     compile 'com.jakewharton:butterknife:7.0.1'
-    testCompile 'junit:junit:4.12'
+    //testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'io.github.kexanie.library:MathView:0.0.5'
+    compile 'io.github.kexanie.library:MathView:0.0.6'
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.android.support:cardview-v7:23.4.0'
-    compile 'com.ogaclejapan.smarttablayout:library:1.2.2@aar'
-    compile 'com.ogaclejapan.smarttablayout:utils-v4:1.2.2@aar'
     compile 'com.github.clans:fab:1.6.3'
     compile 'com.shamanland:xdroid-toaster:0.0.10'
 }

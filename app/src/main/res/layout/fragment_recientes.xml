@@ -5,6 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_rec"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:id="@+id/no_info"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
@@ -20,4 +32,5 @@
         fab:fab_colorNormal="@color/primary"
         fab:fab_colorPressed="@color/primary_dark"
         fab:fab_colorRipple="@color/accent"/>
+
 </FrameLayout>

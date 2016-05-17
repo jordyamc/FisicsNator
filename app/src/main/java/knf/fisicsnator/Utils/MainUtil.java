@@ -1,5 +1,7 @@
 package knf.fisicsnator.Utils;
 
+import android.support.v4.app.Fragment;
+
 import com.mikepenz.community_material_typeface_library.CommunityMaterial;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -14,13 +16,15 @@ import knf.fisicsnator.R;
  */
 public class MainUtil {
     public static final int RECIENTES = 0;
-    public static final int CONFIGURACION = -1;
+    public static final int CONFIGURACION = 999999999;
     public static final int FISICA1 = 10;
     public static final int FISICA1_T1 = 101;
     public static final int FISICA1_T2 = 102;
     public static final int FISICA2 = 20;
     public static final int FISICA2_T1 = 201;
     public static final int FISICA2_T2 = 202;
+
+    public static Fragment current;
 
     public static IDrawerItem[] getDrawerItems() {
         return new IDrawerItem[]{
@@ -40,15 +44,23 @@ public class MainUtil {
 
     private static IDrawerItem[] subFisica1Items() {
         return new IDrawerItem[]{
-                new PrimaryDrawerItem().withName("Tema 1").withIdentifier(FISICA1_T1),
-                new PrimaryDrawerItem().withName("Tema 2").withIdentifier(FISICA1_T2)
+                new PrimaryDrawerItem().withName(R.string.fisica_1_t1).withIdentifier(FISICA1_T1),
+                new PrimaryDrawerItem().withName(R.string.fisica_1_t2).withIdentifier(FISICA1_T2)
         };
     }
 
     private static IDrawerItem[] subFisica2Items() {
         return new IDrawerItem[]{
-                new PrimaryDrawerItem().withName("Tema 1").withIdentifier(FISICA2_T1),
-                new PrimaryDrawerItem().withName("Tema 2").withIdentifier(FISICA2_T2)
+                new PrimaryDrawerItem().withName(R.string.fisica_2_t1).withIdentifier(FISICA2_T1),
+                new PrimaryDrawerItem().withName(R.string.fisica_2_t2).withIdentifier(FISICA2_T2)
         };
+    }
+
+    public static Fragment getCurrent() {
+        return current;
+    }
+
+    public static void setCurrent(Fragment current) {
+        MainUtil.current = current;
     }
 }

@@ -1,13 +1,12 @@
 package knf.fisicsnator.Modules.Fisica1;
 
-import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -16,22 +15,13 @@ import com.github.clans.fab.FloatingActionButton;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import knf.fisicsnator.Modules.BaseModule;
+import knf.fisicsnator.Operaciones.Conversion;
 import knf.fisicsnator.Operaciones.Fisica1.Velocidad;
 import knf.fisicsnator.R;
 import knf.fisicsnator.Utils.Common;
 import xdroid.toaster.Toaster;
 
 public class ModuleVelocidad extends BaseModule {
-
-    /**
-     * Usando la libreria ButterKnife se declaran todos los objectos en
-     * R.layout.sub_item_2_var_1_resp.
-     * <p/>
-     * Se usa el @Bind(R.id.-) seguido del objeto y el nombre, cerrando con un ;
-     * <p/>
-     * Ejemplo: @Bind(R.id.edit1)EditText distancia;
-     */
-
     @Bind(R.id.edit1)
     EditText distancia;
     @Bind(R.id.edit2)
@@ -50,58 +40,47 @@ public class ModuleVelocidad extends BaseModule {
     TextView med2;
     @Bind(R.id.med_3)
     TextView med3;
-    private View view;
-    private Context context;
+
     private int ConversionType;
 
     /**
-     * El Modulo debe extender de {@link BaseModule} y debe de Sobreescribir sus 4 funciones:
+     * El Modulo debe extender de {@link BaseModule} y debe de Sobreescribir 3 funciones:
      *
-     * @see #inflateView(LinearLayout)
-     * @see #setUpViews()
-     * @see #setUpListeners()
-     * @see #checkElements()
+     * @see #setUpViews();
+     * @see #setUpListeners();
+     * @see #checkElements(boolean)
+     * <p>
+     * En el constructor de clase se debe invocar {@link #setLayout(int)}
+     * donde int es la refrencia al layout que usara el modulo
      */
 
-    public ModuleVelocidad(Context context) {
-        this.context = context;
+    public ModuleVelocidad() {
+        setLayout(R.layout.sub_item_2_var_1_resp); //Obligatorio!!!!
     }
 
     /**
-     * Aqui se crea la vista del modulo con View.inflate().
+     * Se invoca {@link ButterKnife}.bind(this,rootView)
      *
-     * @param layout Es la vista en donde se agregara el modulo.
-     * @return Se debe regresar la vista generada por View.inflate(context,Layout,null)
-     * y guardarla como una variable.
      */
 
     @Override
-    public View inflateView(LinearLayout layout) {
-        this.view = View.inflate(context, R.layout.sub_item_2_var_1_resp, null);
-        view.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        setUpViews();
-        return view;
+    public void setCustomViews() {
+        ButterKnife.bind(this,rootView); //Obligatorio!!!!
+        super.setCustomViews(); //Obligatorio!!!!
     }
 
     /**
      * Aqui se pone toda la configuracion inicial de las vistas usadas por el modulo.
      * ya sea informacion, textos iniciales, Hints iniciales, elementos del spinner
-     * <p/>
-     * Antes que nada, se debe invocar ButterKnife.bind(this, View), donde View es la
-     * vista generala por View.inflate() en
      *
-     * @
-     * @see #inflateView(LinearLayout).
-     * <p/>
      * Al final se debe invocar:
-     * @see #setUpListeners()
+     * super.setUpViews();
+     * <p>
+     * O invocar {@link #setUpListeners()}
      */
 
     @Override
     public void setUpViews() {
-        ButterKnife.bind(this, view);//<----Obligatorio!!!!!
         ConversionType = Velocidad.M_S;
         med3.setText("m/s");
         titulo.setText("V=d/t");
@@ -112,7 +91,7 @@ public class ModuleVelocidad extends BaseModule {
         tiempo.setTextColor(context.getResources().getColor(android.R.color.black));
         velocidad.setTextColor(context.getResources().getColor(android.R.color.black));
         types.setAdapter(new ArrayAdapter<>(context, R.layout.simple_list_item, Velocidad.getTipos()));
-        setUpListeners(); //<----Obligatorio!!!!!
+        super.setUpViews(); //Obligatorio!!!!
     }
 
     /**
@@ -128,7 +107,6 @@ public class ModuleVelocidad extends BaseModule {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 velocidad.setHint(Common.getArray(context, R.array.velocidad_array)[position]);
-                ConversionType = position;
                 switch (position) {
                     case Velocidad.KM_H:
                         med3.setText("km/h");
@@ -140,6 +118,41 @@ public class ModuleVelocidad extends BaseModule {
                         med3.setText("m/s");
                         break;
                 }
+                if (velocidad.getText().length() != 0) {
+                    switch (ConversionType) {
+                        case Velocidad.KM_H:
+                            switch (position) {
+                                case Velocidad.KM_S:
+                                    velocidad.setText(String.valueOf(Conversion.fromVelocidad.KMH_TO_KMS(Float.valueOf(velocidad.getText().toString()))));
+                                    break;
+                                case Velocidad.M_S:
+                                    velocidad.setText(String.valueOf(Conversion.fromVelocidad.KMH_TO_MS(Float.valueOf(velocidad.getText().toString()))));
+                                    break;
+                            }
+                            break;
+                        case Velocidad.KM_S:
+                            switch (position) {
+                                case Velocidad.KM_H:
+                                    velocidad.setText(String.valueOf(Conversion.fromVelocidad.KMS_TO_KMH(Float.valueOf(velocidad.getText().toString()))));
+                                    break;
+                                case Velocidad.M_S:
+                                    velocidad.setText(String.valueOf(Conversion.fromVelocidad.KMS_TO_MS(Float.valueOf(velocidad.getText().toString()))));
+                                    break;
+                            }
+                            break;
+                        case Velocidad.M_S:
+                            switch (position) {
+                                case Velocidad.KM_H:
+                                    velocidad.setText(String.valueOf(Conversion.fromVelocidad.MS_TO_KMH(Float.valueOf(velocidad.getText().toString()))));
+                                    break;
+                                case Velocidad.KM_S:
+                                    velocidad.setText(String.valueOf(Conversion.fromVelocidad.MS_TO_KMS(Float.valueOf(velocidad.getText().toString()))));
+                                    break;
+                            }
+                            break;
+                    }
+                }
+                ConversionType = position;
             }
 
             @Override
@@ -151,7 +164,7 @@ public class ModuleVelocidad extends BaseModule {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkElements();
+                checkElements(true);
             }
         });
         actionButton.setOnLongClickListener(new View.OnLongClickListener() {
@@ -226,13 +239,13 @@ public class ModuleVelocidad extends BaseModule {
     }
 
     /**
-     * Aqui se debe de poner toda la logica de las operaciones,ya sea completar la operacion, poner errores, y comprobaciones
-     * <p/>
+     * Aqui se debe de poner toda la logica de las operaciones,ya sea completar la operacion, poner errores, y/o comprobaciones
+     * <p>
      * Esta funcion se debe de invocar al hacer click en el boton flotante de start.
      */
 
     @Override
-    public void checkElements() {
+    public void checkElements(boolean showWarning) {
         String dist = distancia.getText().toString().trim();
         String tmp = tiempo.getText().toString().trim();
         String vel = velocidad.getText().toString().trim();
