@@ -41,7 +41,7 @@ import xdroid.toaster.Toaster;
  * la logica de operaciones del modulo,
  */
 
-public class ModuleFactoryVelocidad extends ModuleFactory_2_Var_1_Resp {
+public class ModuleVelocidad extends ModuleFactory_2_Var_1_Resp {
 
     /**
      * Se puede sobreescribir {@link #setViewNames()} para darle nombres a las vistas,
@@ -79,19 +79,21 @@ public class ModuleFactoryVelocidad extends ModuleFactory_2_Var_1_Resp {
      * super.setUpViews();
      * <p>
      * O invocar {@link #setUpListeners()}
+     *
+     * La funcion {@link #setUnits(String, String, String)} es lo mismo que poner:
+     * med_1.setText(String);    <---|        |       |
+     * med_2.setText(String);    <------------|       |
+     * med_3.setText(String);    <--------------------|
      */
 
     @Override
     public void setUpViews() {
         ConversionType = Velocidad.M_S;
-        med3.setText("m/s");
+        setUnits("m","s","m/s");
         titulo.setText("V=d/t");
         distancia.setHint(R.string.distancia);
         tiempo.setHint(R.string.tiempo);
         velocidad.setHint(R.string.velocidad_ms);
-        distancia.setTextColor(context.getResources().getColor(android.R.color.black));
-        tiempo.setTextColor(context.getResources().getColor(android.R.color.black));
-        velocidad.setTextColor(context.getResources().getColor(android.R.color.black));
         types.setAdapter(new ArrayAdapter<>(context, R.layout.simple_list_item, Velocidad.getTipos()));
         super.setUpViews(); //Obligatorio!!!!
     }
@@ -160,66 +162,6 @@ public class ModuleFactoryVelocidad extends ModuleFactory_2_Var_1_Resp {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
-        distancia.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length() == 0) {
-                    med1.setVisibility(View.GONE);
-                } else {
-                    med1.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        tiempo.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length() == 0) {
-                    med2.setVisibility(View.GONE);
-                } else {
-                    med2.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        velocidad.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length() == 0) {
-                    med3.setVisibility(View.GONE);
-                } else {
-                    med3.setVisibility(View.VISIBLE);
-                }
             }
         });
     }

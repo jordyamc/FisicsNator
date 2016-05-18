@@ -10,4 +10,6 @@
         <item>@string/velocidad_kmh</item>
         <item>@string/velocidad_kms</item>
     </string-array>
+    <string name="fuerza">Fuerza: N</string>
+    <string name="trabajo">Trabajo: J</string>
 </resources>

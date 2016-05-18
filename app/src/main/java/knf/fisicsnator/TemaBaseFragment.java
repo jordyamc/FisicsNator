@@ -16,7 +16,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import knf.fisicsnator.Modules.BaseAdaptetr;
 import knf.fisicsnator.Modules.BaseModule;
-import knf.fisicsnator.Modules.Fisica1.ModuleFactoryVelocidad;
+import knf.fisicsnator.Modules.Fisica1.ModuleVelocidad;
+import knf.fisicsnator.Modules.Fisica2.ModuleTrabajo;
 import knf.fisicsnator.Utils.MainUtil;
 
 
@@ -24,7 +25,6 @@ public class TemaBaseFragment extends Fragment {
     View view;
     @Bind(R.id.recyclerview)
     RecyclerView recyclerView;
-    BaseAdaptetr adaptetr;
     public TemaBaseFragment() {
     }
 
@@ -52,7 +52,8 @@ public class TemaBaseFragment extends Fragment {
 
     private List<BaseModule> getFis1_T1Modules(){
         List<BaseModule> modules=new ArrayList<>();
-        modules.add(new ModuleFactoryVelocidad());
+        modules.add(new ModuleVelocidad());
+        modules.add(new ModuleTrabajo());
         return modules;
     }
 }
